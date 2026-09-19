@@ -39,7 +39,7 @@ body {
     padding: 15px;
 
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 
     background-color: #eee;
@@ -47,6 +47,19 @@ body {
 
     font-size: 30px;
     overflow: hidden;
+}
+
+#operator-display {
+    flex: 0 0 20px;
+    color: #f39c12;
+    font-size: 24px;
+}
+
+#number-display {
+    margin-left: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 

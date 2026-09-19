@@ -38,10 +38,12 @@ let operatorClicked = null; // which operator button was pressed
 let resetScreen = false; // true when the next digit should start a new number
 let calculatorBroke = false;
 
-let displayElement = document.getElementById("display");
+let displayElement = document.getElementById("number-display");
+let operatorDisplayElement = document.getElementById("operator-display");
 
 function updateScreen() {
 	displayElement.textContent = displayValue;
+	operatorDisplayElement.textContent = operatorClicked === null ? "" : operatorClicked;
 }
 
 function pressNumber(number) {
@@ -88,6 +90,7 @@ function pressOperator(operator) {
 
 	if (operatorClicked !== null && resetScreen) {
 		operatorClicked = operator;
+		updateScreen();
 		return;
 	}
 
@@ -109,6 +112,7 @@ function pressOperator(operator) {
 
 	operatorClicked = operator;
 	resetScreen = true;
+	updateScreen();
 }
 
 function pressEquals() {
@@ -143,6 +147,7 @@ function roundNumber(number) {
 
 function showError() {
 	calculatorBroke = true;
+	operatorClicked = null;
 	displayValue = "nice try, can't divide by zero";
 	updateScreen();
 }
