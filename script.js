@@ -20,14 +20,15 @@ function divide(a, b) {
 
 // operator
 function operate(operator, num1, num2) {
-	if (operator === "+") {
-		return add(num1, num2);
-	} else if (operator === "-") {
-		return subtract(num1, num2);
-	} else if (operator === "*") {
-		return multiply(num1, num2);
-	} else if (operator === "/") {
-		return divide(num1, num2);
+	switch (operator) {
+		case "+":
+			return add(num1, num2);
+		case "-":
+			return subtract(num1, num2);
+		case "*":
+			return multiply(num1, num2);
+		case "/":
+			return divide(num1, num2);
 	}
 }
 
@@ -226,17 +227,30 @@ window.addEventListener("keydown", function (event) {
 
 	if (key >= "0" && key <= "9") {
 		pressNumber(key);
-	} else if (key === ".") {
-		pressDecimal();
-	} else if (key === "+" || key === "-" || key === "*" || key === "/") {
-		pressOperator(key);
-	} else if (key === "Enter" || key === "=") {
-		event.preventDefault();
-		pressEquals();
-	} else if (key === "Backspace") {
-		pressBackspace();
-	} else if (key === "Escape") {
-		clearAll();
+		return;
+	}
+
+	switch (key) {
+		case ".":
+			pressDecimal();
+			break;
+		case "+":
+		case "-":
+		case "*":
+		case "/":
+			pressOperator(key);
+			break;
+		case "Enter":
+		case "=":
+			event.preventDefault();
+			pressEquals();
+			break;
+		case "Backspace":
+			pressBackspace();
+			break;
+		case "Escape":
+			clearAll();
+			break;
 	}
 });
 
